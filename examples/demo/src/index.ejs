@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Monaco unified</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Monaco unified</h1>
+      <div>
+        <a href="https://npmjs.com/package/monaco-unified" class="nav-icon">
+          <img
+            alt="npm icon"
+            src="<%= require('@fortawesome/fontawesome-free/svgs/brands/npm.svg') %>"
+          />
+        </a>
+        <a href="https://github.com/remcohaszing/monaco-unified" class="nav-icon">
+          <img
+            alt="GitHub icon"
+            src="<%= require('@fortawesome/fontawesome-free/svgs/brands/github.svg') %>"
+          />
+        </a>
+      </div>
+    </nav>
+    <div class="editor-wrapper">
+      <form id="configuration">
+        <label>
+          <input type="checkbox" name="remark-lint-heading-increment" checked />
+          remark-lint-heading-increment
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-list-item-indent" checked />
+          remark-lint-list-item-indent
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-list-item-spacing" checked />
+          remark-lint-list-item-spacing
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-duplicate-defined-urls" checked />
+          remark-lint-no-duplicate-defined-urls
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-duplicate-definitions" checked />
+          remark-lint-no-duplicate-definitions
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-empty-url" checked />
+          remark-lint-no-empty-url
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-reference-like-url" checked />
+          remark-lint-no-reference-like-url
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-undefined-references" checked />
+          remark-lint-no-undefined-references
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-unneeded-full-reference-image" checked />
+          remark-lint-no-unneeded-full-reference-image
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-unneeded-full-reference-link" checked />
+          remark-lint-no-unneeded-full-reference-link
+        </label>
+        <label>
+          <input type="checkbox" name="remark-lint-no-unused-definitions" checked />
+          remark-lint-no-unused-definitions
+        </label>
+        <label>
+          <input type="checkbox" name="retext-intensify" checked />
+          retext-intensify
+        </label>
+        <label>
+          <input type="checkbox" name="retext-profanities" checked />
+          retext-profanities
+        </label>
+        <label>
+          <input type="checkbox" name="retext-quotes" checked />
+          retext-quotes
+        </label>
+        <label>
+          <input type="checkbox" name="retext-repeated-words" checked />
+          retext-repeated-words
+        </label>
+      </form>
+      <div id="editor"></div>
+      <div id="problems"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "name": "monaco-unified",
+  "version": "0.0.0",
+  "homepage": "https://monaco-unified.js.org",
+  "description": "Get warnings and error messages in monaco editor based on a unified processor.",
+  "type": "module",
+  "workspaces": [
+    "examples/*"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./worker": "./dist/unified.worker.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "monaco",
+    "monaco-editor",
+    "unified",
+    "unifiedjs",
+    "remark",
+    "rehype",
+    "mdx",
+    "markdown",
+    "html"
+  ],
+  "author": "Remco Haszing <remcohaszing@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/remcohaszing/monaco-unified"
+  },
+  "bugs": {
+    "url": "https://github.com/remcohaszing/monaco-unified/issues"
+  },
+  "scripts": {
+    "prepack": "tsc --project tsconfig-build.json",
+    "start": "npm --workspace demo start"
+  },
+  "dependencies": {
+    "monaco-marker-data-provider": "^1.0.0",
+    "monaco-worker-manager": "2.0.0",
+    "unified": "^10.0.0",
+    "vfile": "^5.0.0"
+  },
+  "peerDependencies": {
+    "monaco-editor": ">=0.30.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-remcohaszing": "^4.0.0",
+    "prettier": "^2.0.0",
+    "remark": "^14.0.0",
+    "remark-lint-heading-increment": "^3.0.0",
+    "vfile-message": "^3.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+root: true
+extends:
+  - remcohaszing
+  - remcohaszing/typechecking
+rules:
+  import/extensions: off
+  import/no-extraneous-dependencies: off
+  import/no-relative-packages: off
+  import/no-unresolved: off
+
+  node/no-unsupported-features/node-builtins: off
+  node/no-unpublished-import: off
+
+  unicorn/import-index: off

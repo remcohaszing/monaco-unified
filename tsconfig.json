@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "paths": {
+      "monaco-unified": ["./src"],
+      "monaco-unified/*": ["./src/*"]
+    },
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "strict": true,
+    "stripInternal": true,
+    "target": "es2019",
+    "types": []
+  }
+}
