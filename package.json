@@ -8,8 +8,8 @@
     "examples/*"
   ],
   "exports": {
-    ".": "./dist/index.js",
-    "./worker": "./dist/unified.worker.js"
+    ".": "./index.js",
+    "./worker": "./worker.js"
   },
   "files": [
     "dist"
