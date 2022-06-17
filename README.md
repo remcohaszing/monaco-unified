@@ -78,7 +78,7 @@ Configure monaco-unified.
   - `validation`: By default `monaco-unified` supports validation using unified. Set this to `false`
     to disable.. (`boolean`, optional, default: `true`)
 
-**Returns**: A disposable with the following additional properties::
+**Returns**: A disposable with the following additional properties:
 
 - `reconfigure(configuration)`: Update the configuration.
 
@@ -92,6 +92,16 @@ Initialize the worker.
 
 - `getProcessor`: A function which gets called with a [VFile](https://github.com/vfile/vfile)
   instance and the passed configuration, and should return a unified processor.
+
+## Related projects
+
+- [`monaco-tailwindcss`](https://monaco-tailwindcss.js.org)
+- [`monaco-yaml`](https://monaco-yaml.js.org)
+
+## Showcase
+
+- [Motif](https://motif.land) uses `monaco-unified` to provide a rich editing experience for MDX
+  files.
 
 ## License
 
