@@ -12,7 +12,8 @@
     "./worker": "./worker.js"
   },
   "files": [
-    "dist"
+    "/*.js",
+    "/*.d.ts"
   ],
   "keywords": [
     "monaco",
