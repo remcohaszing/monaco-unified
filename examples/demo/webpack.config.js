@@ -14,7 +14,7 @@ export default {
   resolve: {
     extensions: ['.mjs', '.js', '.ts'],
     alias: {
-      'monaco-unified': fileURLToPath(new URL('dist/', monacoUnified)),
+      'monaco-unified': fileURLToPath(monacoUnified),
       'decode-named-character-reference': fileURLToPath(
         new URL('decode-named-character-reference/index.js', nodeModules),
       ),
