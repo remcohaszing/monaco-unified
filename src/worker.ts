@@ -42,7 +42,10 @@ export interface UnifiedWorker {
 /**
  * A function for getting a processor to use for validation and formatting.
  */
-export type ProcessorGetter<T> = (file: VFile, configuration: T) => Processor
+export type ProcessorGetter<T> = (
+  file: VFile,
+  configuration: T,
+) => Processor | PromiseLike<Processor>
 
 /**
  * Represent a vfile message in Monaco editor.
@@ -103,7 +106,7 @@ export function initialize<T>(getProcessor: ProcessorGetter<T>): void {
           return
         }
 
-        const processor = getProcessor(file, createData)
+        const processor = await getProcessor(file, createData)
         const { messages } = await processor.process(file)
         return messages.map(vfileMessageToMarkerData)
       },
@@ -115,7 +118,7 @@ export function initialize<T>(getProcessor: ProcessorGetter<T>): void {
           return
         }
 
-        const processor = getProcessor(file, createData)
+        const processor = await getProcessor(file, createData)
         const { value } = await processor.process(file)
         return value
       },
