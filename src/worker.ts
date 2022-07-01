@@ -42,9 +42,9 @@ export interface UnifiedWorker {
 /**
  * A function for getting a processor to use for validation and formatting.
  */
-export type ProcessorGetter<T> = (
+export type ProcessorGetter<Configuration> = (
   file: VFile,
-  configuration: T,
+  configuration: Configuration,
 ) => Processor | PromiseLike<Processor>
 
 /**
@@ -84,8 +84,8 @@ function vfileMessageToMarkerData(message: VFileMessage): SerializableMarkerData
  *
  * @param getProcessor - A function for getting a processor.
  */
-export function initialize<T>(getProcessor: ProcessorGetter<T>): void {
-  initializeWorker<UnifiedWorker, T>((ctx, createData) => {
+export function initialize<Configuration>(getProcessor: ProcessorGetter<Configuration>): void {
+  initializeWorker<UnifiedWorker, Configuration>((ctx, createData) => {
     const getVFile = (uri: string): VFile | undefined => {
       const models = ctx.getMirrorModels()
       for (const model of models) {

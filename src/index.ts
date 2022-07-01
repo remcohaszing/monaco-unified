@@ -9,7 +9,7 @@ import {
 } from './languageFeatures.js'
 import { UnifiedWorker } from './worker.js'
 
-export interface MonacoUnifiedOptions {
+export interface MonacoUnifiedOptions<Configuration> {
   /**
    * The label to use for the worker.
    *
@@ -25,7 +25,7 @@ export interface MonacoUnifiedOptions {
   /**
    * The configuration that will be sent to the worker.
    */
-  configuration?: unknown
+  configuration?: Configuration
 
   /**
    * By default `monaco-unified` supports formatting using unified. Set this to `false` to disable.
@@ -42,11 +42,11 @@ export interface MonacoUnifiedOptions {
   validation?: boolean
 }
 
-export interface MonacoUnified extends IDisposable {
+export interface MonacoUnified<Configuration> extends IDisposable {
   /**
    * Update the configuration.
    */
-  reconfigure: (configuration: unknown) => void
+  reconfigure: (configuration: Configuration) => void
 }
 
 /**
@@ -56,10 +56,10 @@ export interface MonacoUnified extends IDisposable {
  * @param options - Options to configure `monaco-unified`.
  * @returns A disposable
  */
-export function configureMonacoUnified(
+export function configureMonacoUnified<Configuration>(
   monaco: typeof import('monaco-editor'),
-  options: MonacoUnifiedOptions,
-): MonacoUnified {
+  options: MonacoUnifiedOptions<Configuration>,
+): MonacoUnified<Configuration> {
   const workerManager = createWorkerManager<UnifiedWorker>(monaco, {
     label: options.label,
     moduleId: options.label,
