@@ -98,6 +98,7 @@ export function createCodeActionProvider(): languages.CodeActionProvider {
                   : `Insert \`${expected}\``
                 : `Delete \`${value}\``,
               kind: 'quickfix',
+              isPreferred: message.expected.length === 1,
               edit: {
                 edits: [
                   {
