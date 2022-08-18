@@ -1,6 +1,6 @@
 import { IDisposable, languages } from 'monaco-editor/esm/vs/editor/editor.api.js'
 import { registerMarkerDataProvider } from 'monaco-marker-data-provider'
-import { createWorkerManager } from 'monaco-worker-manager'
+import { createWorkerManager, WorkerManagerOptions } from 'monaco-worker-manager'
 
 import {
   createCodeActionProvider,
@@ -9,14 +9,8 @@ import {
 } from './languageFeatures.js'
 import { UnifiedWorker } from './worker.js'
 
-export interface MonacoUnifiedOptions<Configuration> {
-  /**
-   * The label to use for the worker.
-   *
-   * This is used to match a worker in in `MonacoEnvironment`.
-   */
-  label: string
-
+export interface MonacoUnifiedOptions<Configuration>
+  extends Pick<WorkerManagerOptions<Configuration>, 'interval' | 'label' | 'stopWhenIdleFor'> {
   /**
    * The language ID or IDs to which to apply `monaco-unified`.
    */
@@ -64,6 +58,8 @@ export function configureMonacoUnified<Configuration>(
     label: options.label,
     moduleId: options.label,
     createData: options.configuration,
+    interval: options.interval,
+    stopWhenIdleFor: options.stopWhenIdleFor,
   })
 
   let markerDataProvider: IDisposable | undefined
