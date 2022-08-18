@@ -50,7 +50,7 @@ export type ProcessorGetter<Configuration> = (
 /**
  * Represent a vfile message in Monaco editor.
  *
- * @param message - The vfile message to represent in Monaco editor
+ * @param message The vfile message to represent in Monaco editor
  * @returns The vfile message as Monaco editor marker data.
  */
 function vfileMessageToMarkerData(message: VFileMessage): SerializableMarkerData {
@@ -82,7 +82,7 @@ function vfileMessageToMarkerData(message: VFileMessage): SerializableMarkerData
 /**
  * Initialize the worker.
  *
- * @param getProcessor - A function for getting a processor.
+ * @param getProcessor A function for getting a processor.
  */
 export function initialize<Configuration>(getProcessor: ProcessorGetter<Configuration>): void {
   initializeWorker<UnifiedWorker, Configuration>((ctx, createData) => {

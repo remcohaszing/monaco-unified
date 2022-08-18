@@ -2,7 +2,7 @@ import { editor, languages } from 'monaco-editor'
 import { MarkerDataProvider } from 'monaco-marker-data-provider'
 import { WorkerGetter } from 'monaco-worker-manager'
 
-import { SerializableMarkerData, UnifiedWorker } from './worker'
+import { SerializableMarkerData, UnifiedWorker } from './worker.js'
 
 type GetWorker = WorkerGetter<UnifiedWorker>
 
@@ -12,7 +12,7 @@ const messagesMap = new WeakMap<editor.ITextModel, SerializableMarkerData[]>()
  * Create a marker data provider for validation.
  *
  * @internal
- * @param getWorker - A function to get the unified worker.
+ * @param getWorker A function to get the unified worker.
  * @returns A Monaco marker data provider
  */
 export function createMarkerDataProvider(
@@ -45,7 +45,7 @@ export function createMarkerDataProvider(
  * Create a Monaco document formatting provider.
  *
  * @internal
- * @param getWorker - A function to get the unified worker.
+ * @param getWorker A function to get the unified worker.
  * @returns A Monaco document formatting provider.
  */
 export function createDocumentFormattingProvider(

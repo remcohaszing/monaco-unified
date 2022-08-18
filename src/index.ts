@@ -46,8 +46,8 @@ export interface MonacoUnified<Configuration> extends IDisposable {
 /**
  * Configure monaco-unified.
  *
- * @param monaco - The `monaco-editor` module to use.
- * @param options - Options to configure `monaco-unified`.
+ * @param monaco The `monaco-editor` module to use.
+ * @param options Options to configure `monaco-unified`.
  * @returns A disposable
  */
 export function configureMonacoUnified<Configuration>(
