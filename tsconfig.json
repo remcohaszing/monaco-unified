@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "node16",
     "noEmit": true,
     "noImplicitAny": true,
     "paths": {
-      "monaco-unified": ["./src"],
-      "monaco-unified/*": ["./src/*"]
+      "monaco-unified": ["./index.ts"],
+      "monaco-unified/worker": ["./worker.ts"]
     },
-    "rootDir": ".",
     "skipLibCheck": true,
     "strict": true,
     "stripInternal": true,

@@ -3,15 +3,6 @@ import { configureMonacoUnified } from 'monaco-unified'
 
 import './index.css'
 
-declare global {
-  interface Window {
-    /**
-     * The monaco environment.
-     */
-    MonacoEnvironment: monaco.Environment
-  }
-}
-
 window.MonacoEnvironment = {
   getWorker(moduleId, label) {
     switch (label) {

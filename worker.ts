@@ -1,8 +1,8 @@
-import { editor } from 'monaco-editor'
+import { type editor } from 'monaco-editor'
 import { initialize as initializeWorker } from 'monaco-worker-manager/worker'
-import { Processor } from 'unified'
+import { type Processor } from 'unified'
 import { VFile } from 'vfile'
-import { VFileMessage } from 'vfile-message'
+import { type VFileMessage } from 'vfile-message'
 
 /**
  * @internal

@@ -1,8 +1,8 @@
-import { editor, languages } from 'monaco-editor'
-import { MarkerDataProvider } from 'monaco-marker-data-provider'
-import { WorkerGetter } from 'monaco-worker-manager'
+import { type editor, type languages } from 'monaco-editor'
+import { type MarkerDataProvider } from 'monaco-marker-data-provider'
+import { type WorkerGetter } from 'monaco-worker-manager'
 
-import { SerializableMarkerData, UnifiedWorker } from './worker.js'
+import { type SerializableMarkerData, type UnifiedWorker } from './worker.js'
 
 type GetWorker = WorkerGetter<UnifiedWorker>
 
@@ -102,9 +102,9 @@ export function createCodeActionProvider(): languages.CodeActionProvider {
               edit: {
                 edits: [
                   {
-                    edit: { range: message, text: expected },
+                    textEdit: { range: message, text: expected },
                     resource: model.uri,
-                    modelVersionId: model.getVersionId(),
+                    versionId: model.getVersionId(),
                   },
                 ],
               },

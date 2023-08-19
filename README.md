@@ -68,8 +68,8 @@ Configure monaco-unified.
 
 - `monaco`: The `monaco-editor` module.
 - `options`: An object with the following properties:
-  - `label`: The label to use for the worker. This is used to match a worker in in
-    `MonacoEnvironment` (`string`).
+  - `label`: The label to use for the worker. This is used to match a worker in `MonacoEnvironment`
+    (`string`).
   - `languageSelector`: The language ID or IDs to which to apply `monaco-unified`. (`string` |
     `string[]`)
   - `configuration`: The configuration that will be sent to the worker. (optional)

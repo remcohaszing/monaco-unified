@@ -13,6 +13,9 @@ export default {
   },
   resolve: {
     extensions: ['.mjs', '.js', '.ts'],
+    extensionAlias: {
+      '.js': ['.js', '.ts'],
+    },
     alias: {
       'monaco-unified': fileURLToPath(monacoUnified),
       'decode-named-character-reference': fileURLToPath(

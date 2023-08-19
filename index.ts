@@ -1,13 +1,13 @@
-import { IDisposable, languages } from 'monaco-editor/esm/vs/editor/editor.api.js'
+import { type IDisposable, languages } from 'monaco-editor/esm/vs/editor/editor.api.js'
 import { registerMarkerDataProvider } from 'monaco-marker-data-provider'
-import { createWorkerManager, WorkerManagerOptions } from 'monaco-worker-manager'
+import { createWorkerManager, type WorkerManagerOptions } from 'monaco-worker-manager'
 
 import {
   createCodeActionProvider,
   createDocumentFormattingProvider,
   createMarkerDataProvider,
 } from './languageFeatures.js'
-import { UnifiedWorker } from './worker.js'
+import { type UnifiedWorker } from './worker.js'
 
 export interface MonacoUnifiedOptions<Configuration>
   extends Pick<WorkerManagerOptions<Configuration>, 'interval' | 'label' | 'stopWhenIdleFor'> {

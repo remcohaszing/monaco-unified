@@ -4,5 +4,3 @@ extends:
   - remcohaszing/typechecking
 rules:
   import/no-extraneous-dependencies: off
-
-  n/no-unsupported-features/node-builtins: off

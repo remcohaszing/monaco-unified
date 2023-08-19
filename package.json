@@ -39,7 +39,7 @@
     "url": "https://github.com/sponsors/remcohaszing"
   },
   "scripts": {
-    "prepack": "tsc --project tsconfig-build.json",
+    "prepack": "tsc --noEmit false",
     "start": "npm --workspace demo start"
   },
   "dependencies": {
@@ -52,13 +52,13 @@
     "monaco-editor": ">=0.30.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint": "^8.0.0",
-    "eslint-config-remcohaszing": "^6.0.0",
-    "monaco-editor": "^0.33.0",
-    "prettier": "^2.0.0",
-    "remark": "^14.0.0",
-    "remark-lint-heading-increment": "^3.0.0",
+    "eslint-config-remcohaszing": "^10.0.0",
+    "monaco-editor": "^0.41.0",
+    "prettier": "^3.0.0",
+    "remark-cli": "^11.0.0",
+    "remark-preset-remcohaszing": "^2.0.0",
+    "typescript": "^5.0.0",
     "vfile-message": "^3.0.0"
   }
 }
