@@ -1,5 +1,5 @@
-import { type IDisposable, languages } from 'monaco-editor/esm/vs/editor/editor.api.js'
 import { registerMarkerDataProvider } from 'monaco-marker-data-provider'
+import { type IDisposable, type MonacoEditor } from 'monaco-types'
 import { createWorkerManager, type WorkerManagerOptions } from 'monaco-worker-manager'
 
 import {
@@ -51,7 +51,7 @@ export interface MonacoUnified<Configuration> extends IDisposable {
  * @returns A disposable
  */
 export function configureMonacoUnified<Configuration>(
-  monaco: typeof import('monaco-editor'),
+  monaco: MonacoEditor,
   options: MonacoUnifiedOptions<Configuration>
 ): MonacoUnified<Configuration> {
   const workerManager = createWorkerManager<UnifiedWorker>(monaco, {
@@ -66,7 +66,7 @@ export function configureMonacoUnified<Configuration>(
   const disposables: IDisposable[] = [workerManager]
   if (options.formatting !== false) {
     disposables.push(
-      languages.registerDocumentFormattingEditProvider(
+      monaco.languages.registerDocumentFormattingEditProvider(
         options.languageSelector,
         createDocumentFormattingProvider(workerManager.getWorker)
       )
@@ -74,7 +74,10 @@ export function configureMonacoUnified<Configuration>(
   }
   if (options.validation !== false) {
     disposables.push(
-      languages.registerCodeActionProvider(options.languageSelector, createCodeActionProvider())
+      monaco.languages.registerCodeActionProvider(
+        options.languageSelector,
+        createCodeActionProvider()
+      )
     )
     markerDataProvider = registerMarkerDataProvider(
       monaco,

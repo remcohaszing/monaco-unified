@@ -36,6 +36,7 @@
     "start": "npm --workspace demo start"
   },
   "dependencies": {
+    "monaco-types": "^0.1.0",
     "monaco-marker-data-provider": "^1.0.0",
     "monaco-worker-manager": "^2.0.0",
     "unified": "^10.0.0",

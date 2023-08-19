@@ -1,5 +1,5 @@
-import { type editor, type languages } from 'monaco-editor'
 import { type MarkerDataProvider } from 'monaco-marker-data-provider'
+import { type editor, type languages, type MonacoEditor } from 'monaco-types'
 import { type WorkerGetter } from 'monaco-worker-manager'
 
 import { type SerializableMarkerData, type UnifiedWorker } from './worker.js'
@@ -16,7 +16,7 @@ const messagesMap = new WeakMap<editor.ITextModel, SerializableMarkerData[]>()
  * @returns A Monaco marker data provider
  */
 export function createMarkerDataProvider(
-  { Uri }: typeof import('monaco-editor'),
+  { Uri }: MonacoEditor,
   getWorker: GetWorker
 ): MarkerDataProvider {
   return {

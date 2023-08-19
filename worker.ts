@@ -1,4 +1,4 @@
-import { type editor } from 'monaco-editor'
+import { type editor } from 'monaco-types'
 import { initialize as initializeWorker } from 'monaco-worker-manager/worker'
 import { type Processor } from 'unified'
 import { VFile } from 'vfile'
