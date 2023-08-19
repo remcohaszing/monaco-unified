@@ -28,16 +28,9 @@
   ],
   "author": "Remco Haszing <remcohaszing@gmail.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/remcohaszing/monaco-unified"
-  },
-  "bugs": {
-    "url": "https://github.com/remcohaszing/monaco-unified/issues"
-  },
-  "funding": {
-    "url": "https://github.com/sponsors/remcohaszing"
-  },
+  "repository": "remcohaszing/monaco-unified",
+  "bugs": "https://github.com/remcohaszing/monaco-unified/issues",
+  "funding": "https://github.com/sponsors/remcohaszing",
   "scripts": {
     "prepack": "tsc --noEmit false",
     "start": "npm --workspace demo start"
