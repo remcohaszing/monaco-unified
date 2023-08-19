@@ -17,7 +17,7 @@ const messagesMap = new WeakMap<editor.ITextModel, SerializableMarkerData[]>()
  */
 export function createMarkerDataProvider(
   { Uri }: typeof import('monaco-editor'),
-  getWorker: GetWorker,
+  getWorker: GetWorker
 ): MarkerDataProvider {
   return {
     owner: 'unified',
@@ -35,9 +35,9 @@ export function createMarkerDataProvider(
 
       return messages.map(({ code, expected, url, ...message }) => ({
         ...message,
-        code: url ? { target: Uri.parse(url), value: code ?? url } : code,
+        code: url ? { target: Uri.parse(url), value: code ?? url } : code
       }))
-    },
+    }
   }
 }
 
@@ -49,7 +49,7 @@ export function createMarkerDataProvider(
  * @returns A Monaco document formatting provider.
  */
 export function createDocumentFormattingProvider(
-  getWorker: GetWorker,
+  getWorker: GetWorker
 ): languages.DocumentFormattingEditProvider {
   return {
     async provideDocumentFormattingEdits(model) {
@@ -62,7 +62,7 @@ export function createDocumentFormattingProvider(
       }
 
       return [{ range: model.getFullModelRange(), text }]
-    },
+    }
   }
 }
 
@@ -104,10 +104,10 @@ export function createCodeActionProvider(): languages.CodeActionProvider {
                   {
                     textEdit: { range: message, text: expected },
                     resource: model.uri,
-                    versionId: model.getVersionId(),
-                  },
-                ],
-              },
+                    versionId: model.getVersionId()
+                  }
+                ]
+              }
             })
           }
         }
@@ -117,8 +117,8 @@ export function createCodeActionProvider(): languages.CodeActionProvider {
         actions,
         dispose() {
           // This function is needed by the TypeScript interface
-        },
+        }
       }
-    },
+    }
   }
 }

@@ -13,7 +13,7 @@ window.MonacoEnvironment = {
       default:
         throw new Error(`Unknown label ${label}`)
     }
-  },
+  }
 }
 
 const form = document.getElementById('configuration') as HTMLFormElement
@@ -34,7 +34,7 @@ function getConfiguration(): Record<string, boolean> {
 const monacoUnified = configureMonacoUnified(monaco, {
   label: 'remark',
   languageSelector: 'markdown',
-  configuration: getConfiguration(),
+  configuration: getConfiguration()
 })
 
 for (const checkbox of form) {
@@ -74,7 +74,7 @@ const ed = monaco.editor.create(document.getElementById('editor')!, {
   model: monaco.editor.createModel(value, 'markdown', monaco.Uri.parse('readme.md')),
   theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'vs-dark' : 'vs-light',
   unicodeHighlight: { ambiguousCharacters: false },
-  wordWrap: 'on',
+  wordWrap: 'on'
 })
 
 monaco.editor.onDidChangeMarkers(([resource]) => {

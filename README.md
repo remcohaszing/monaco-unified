@@ -42,7 +42,7 @@ window.MonacoEnvironment = {
       default:
         throw new Error(`Unknown label ${label}`)
     }
-  },
+  }
 }
 
 const monacoUnified = configureMonacoUnified(monaco, {
@@ -50,7 +50,7 @@ const monacoUnified = configureMonacoUnified(monaco, {
   label: 'remark',
   configuration: {
     // This configuration will be passed to your worker.
-  },
+  }
 })
 ```
 

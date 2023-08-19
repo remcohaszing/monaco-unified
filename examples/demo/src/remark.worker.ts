@@ -31,14 +31,14 @@ const remarkPlugins = {
   'remark-lint-no-undefined-references': remarkLintNoUndefinedReferences,
   'remark-lint-no-unneeded-full-reference-image': remarkLintNoUnneededFullReferenceImage,
   'remark-lint-no-unneeded-full-reference-link': remarkLintNoUnneededFullReferenceLink,
-  'remark-lint-no-unused-definitions': remarkLintNoUnusedDefinitions,
+  'remark-lint-no-unused-definitions': remarkLintNoUnusedDefinitions
 } as const
 
 const retextPlugins = {
   'retext-intensify': retextIntensify,
   'retext-profanities': retextProfanities,
   'retext-quotes': retextQuotes,
-  'retext-repeated-words': retextRepeatedWords,
+  'retext-repeated-words': retextRepeatedWords
 } as const
 
 initialize((vfile, configuration: Record<string, boolean>) => {

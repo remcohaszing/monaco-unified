@@ -44,7 +44,7 @@ export interface UnifiedWorker {
  */
 export type ProcessorGetter<Configuration> = (
   file: VFile,
-  configuration: Configuration,
+  configuration: Configuration
 ) => Processor | PromiseLike<Processor>
 
 /**
@@ -75,7 +75,7 @@ function vfileMessageToMarkerData(message: VFileMessage): SerializableMarkerData
     code: message.ruleId ?? undefined,
     source: message.source ?? undefined,
     expected: message.expected ?? undefined,
-    url: message.url ?? undefined,
+    url: message.url ?? undefined
   }
 }
 
@@ -92,7 +92,7 @@ export function initialize<Configuration>(getProcessor: ProcessorGetter<Configur
         if (String(model.uri) === uri) {
           return new VFile({
             path: new URL(uri),
-            value: model.getValue(),
+            value: model.getValue()
           })
         }
       }
@@ -121,7 +121,7 @@ export function initialize<Configuration>(getProcessor: ProcessorGetter<Configur
         const processor = await getProcessor(file, createData)
         const { value } = await processor.process(file)
         return value
-      },
+      }
     }
   })
 }

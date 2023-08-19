@@ -5,7 +5,7 @@ import { createWorkerManager, type WorkerManagerOptions } from 'monaco-worker-ma
 import {
   createCodeActionProvider,
   createDocumentFormattingProvider,
-  createMarkerDataProvider,
+  createMarkerDataProvider
 } from './languageFeatures.js'
 import { type UnifiedWorker } from './worker.js'
 
@@ -52,14 +52,14 @@ export interface MonacoUnified<Configuration> extends IDisposable {
  */
 export function configureMonacoUnified<Configuration>(
   monaco: typeof import('monaco-editor'),
-  options: MonacoUnifiedOptions<Configuration>,
+  options: MonacoUnifiedOptions<Configuration>
 ): MonacoUnified<Configuration> {
   const workerManager = createWorkerManager<UnifiedWorker>(monaco, {
     label: options.label,
     moduleId: options.label,
     createData: options.configuration,
     interval: options.interval,
-    stopWhenIdleFor: options.stopWhenIdleFor,
+    stopWhenIdleFor: options.stopWhenIdleFor
   })
 
   let markerDataProvider: IDisposable | undefined
@@ -68,18 +68,18 @@ export function configureMonacoUnified<Configuration>(
     disposables.push(
       languages.registerDocumentFormattingEditProvider(
         options.languageSelector,
-        createDocumentFormattingProvider(workerManager.getWorker),
-      ),
+        createDocumentFormattingProvider(workerManager.getWorker)
+      )
     )
   }
   if (options.validation !== false) {
     disposables.push(
-      languages.registerCodeActionProvider(options.languageSelector, createCodeActionProvider()),
+      languages.registerCodeActionProvider(options.languageSelector, createCodeActionProvider())
     )
     markerDataProvider = registerMarkerDataProvider(
       monaco,
       options.languageSelector,
-      createMarkerDataProvider(monaco, workerManager.getWorker),
+      createMarkerDataProvider(monaco, workerManager.getWorker)
     )
   }
 
@@ -98,9 +98,9 @@ export function configureMonacoUnified<Configuration>(
         markerDataProvider = registerMarkerDataProvider(
           monaco,
           options.languageSelector,
-          createMarkerDataProvider(monaco, workerManager.getWorker),
+          createMarkerDataProvider(monaco, workerManager.getWorker)
         )
       }
-    },
+    }
   }
 }
