@@ -14,7 +14,7 @@
     "html-webpack-plugin": "^5.0.0",
     "mini-css-extract-plugin": "^2.0.0",
     "monaco-editor": "^0.41.0",
-    "monaco-unified": "file:..",
+    "monaco-unified": "file:../..",
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
     "remark-lint-heading-increment": "^4.0.0",

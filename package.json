@@ -8,12 +8,14 @@
     "examples/*"
   ],
   "exports": {
-    ".": "./index.js",
-    "./worker": "./worker.js"
+    ".": "./dist/monaco-unified.js",
+    "./worker": "./dist/worker.js"
   },
   "files": [
-    "/*.js",
-    "/*.d.ts"
+    "dist",
+    "src",
+    "!tsconfig.json",
+    "!*.tsbuildinfo"
   ],
   "keywords": [
     "monaco",
@@ -32,7 +34,8 @@
   "bugs": "https://github.com/remcohaszing/monaco-unified/issues",
   "funding": "https://github.com/sponsors/remcohaszing",
   "scripts": {
-    "prepack": "tsc --noEmit false",
+    "prepack": "tsc --build",
+    "prestart": "tsc --build",
     "start": "npm --workspace demo start"
   },
   "dependencies": {

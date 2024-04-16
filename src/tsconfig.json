@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "module": "nodenext",
+    "noImplicitAny": true,
+    "outDir": "../dist",
+    "strict": true,
+    "stripInternal": true,
+    "types": []
+  }
+}

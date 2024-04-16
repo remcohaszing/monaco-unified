@@ -1,17 +1,4 @@
 {
-  "compilerOptions": {
-    "declaration": true,
-    "module": "node16",
-    "noEmit": true,
-    "noImplicitAny": true,
-    "paths": {
-      "monaco-unified": ["./index.ts"],
-      "monaco-unified/worker": ["./worker.ts"]
-    },
-    "skipLibCheck": true,
-    "strict": true,
-    "stripInternal": true,
-    "target": "es2019",
-    "types": []
-  }
+  "files": [],
+  "references": [{ "path": "./src/tsconfig.json" }, {"path": "./examples/demo/tsconfig.json"}]
 }
