@@ -9,6 +9,11 @@ const messagesMap = new WeakMap<editor.ITextModel, SerializableMarkerData[]>()
 export interface MonacoUnifiedOptions<Configuration>
   extends Pick<WorkerManagerOptions<Configuration>, 'interval' | 'label' | 'stopWhenIdleFor'> {
   /**
+   * The display name to use for the formatting provider.
+   */
+  displayName?: string
+
+  /**
    * The language ID or IDs to which to apply `monaco-unified`.
    */
   languageSelector: string[] | string
@@ -63,6 +68,7 @@ export function configureMonacoUnified<Configuration>(
     options.formatting === false
       ? undefined
       : monaco.languages.registerDocumentFormattingEditProvider(options.languageSelector, {
+          displayName: options.displayName,
           async provideDocumentFormattingEdits(model) {
             const worker = await workerManager.getWorker(model.uri)
 

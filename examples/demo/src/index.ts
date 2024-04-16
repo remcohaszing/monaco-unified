@@ -32,6 +32,7 @@ function getConfiguration(): Record<string, boolean> {
 }
 
 const monacoUnified = configureMonacoUnified(monaco, {
+  displayName: 'remark',
   label: 'remark',
   languageSelector: 'markdown',
   configuration: getConfiguration()
