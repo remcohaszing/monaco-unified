@@ -1,4 +1,7 @@
-import { registerMarkerDataProvider } from 'monaco-marker-data-provider'
+import {
+  type MarkerDataProviderInstance,
+  registerMarkerDataProvider
+} from 'monaco-marker-data-provider'
 import { type IDisposable, type MonacoEditor } from 'monaco-types'
 import { createWorkerManager, type WorkerManagerOptions } from 'monaco-worker-manager'
 
@@ -62,7 +65,7 @@ export function configureMonacoUnified<Configuration>(
     stopWhenIdleFor: options.stopWhenIdleFor
   })
 
-  let markerDataProvider: IDisposable | undefined
+  let markerDataProvider: MarkerDataProviderInstance | undefined
   const disposables: IDisposable[] = [workerManager]
   if (options.formatting !== false) {
     disposables.push(
@@ -96,14 +99,7 @@ export function configureMonacoUnified<Configuration>(
 
     reconfigure(configuration) {
       workerManager.updateCreateData(configuration)
-      if (markerDataProvider) {
-        markerDataProvider.dispose()
-        markerDataProvider = registerMarkerDataProvider(
-          monaco,
-          options.languageSelector,
-          createMarkerDataProvider(monaco, workerManager.getWorker)
-        )
-      }
+      markerDataProvider?.revalidate()
     }
   }
 }
