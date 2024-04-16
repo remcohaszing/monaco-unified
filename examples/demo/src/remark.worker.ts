@@ -43,7 +43,7 @@ const retextPlugins = {
 
 initialize((vfile, configuration: Record<string, boolean>) => {
   const retext = unified().use(retextEnglish)
-  const processor = remark().use(remarkGfm).use(remarkRetext, retext)
+  const processor = remark().use([remarkGfm, [remarkRetext, retext]])
 
   for (const [name, enabled] of Object.entries(configuration)) {
     if (enabled) {

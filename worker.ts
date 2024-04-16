@@ -1,4 +1,4 @@
-import { type editor } from 'monaco-types'
+import { type editor, type IRange } from 'monaco-types'
 import { initialize as initializeWorker } from 'monaco-worker-manager/worker'
 import { type Processor } from 'unified'
 import { VFile } from 'vfile'
@@ -45,7 +45,43 @@ export interface UnifiedWorker {
 export type ProcessorGetter<Configuration> = (
   file: VFile,
   configuration: Configuration
-) => Processor | PromiseLike<Processor>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+) => Processor<any, any, any, any, any> | PromiseLike<Processor<any, any, any, any, any>>
+
+/**
+ * Convert a vfile message place to a Monaco range.
+ *
+ * @param place
+ *   The vfile place to convert.
+ * @returns
+ *   The place as a Monaco range.
+ */
+function placeToRange(place: VFileMessage['place']): IRange {
+  if (!place) {
+    return {
+      startLineNumber: 0,
+      startColumn: 0,
+      endLineNumber: 0,
+      endColumn: 0
+    }
+  }
+
+  if ('start' in place) {
+    return {
+      startLineNumber: place.start.line,
+      startColumn: place.start.column,
+      endLineNumber: place.end.line,
+      endColumn: place.end.column
+    }
+  }
+
+  return {
+    startLineNumber: place.line,
+    startColumn: place.column,
+    endLineNumber: place.line,
+    endColumn: place.column
+  }
+}
 
 /**
  * Represent a vfile message in Monaco editor.
@@ -66,11 +102,8 @@ function vfileMessageToMarkerData(message: VFileMessage): SerializableMarkerData
   }
 
   return {
+    ...placeToRange(message.place),
     severity: message.fatal == null ? 1 : message.fatal ? 8 : 4,
-    startLineNumber: message.position?.start.line ?? message.line ?? 0,
-    startColumn: message.position?.start.column ?? message.column ?? 0,
-    endLineNumber: message.position?.end.line ?? message.line ?? 0,
-    endColumn: message.position?.end.column ?? message.column ?? 0,
     message: msg.join('\n\n'),
     code: message.ruleId ?? undefined,
     source: message.source ?? undefined,
@@ -119,8 +152,7 @@ export function initialize<Configuration>(getProcessor: ProcessorGetter<Configur
         }
 
         const processor = await getProcessor(file, createData)
-        const { value } = await processor.process(file)
-        return value
+        return String(await processor.process(file))
       }
     }
   })
