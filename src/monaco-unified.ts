@@ -2,15 +2,12 @@ import {
   type MarkerDataProviderInstance,
   registerMarkerDataProvider
 } from 'monaco-marker-data-provider'
-import { type IDisposable, type MonacoEditor } from 'monaco-types'
+import { type editor, type IDisposable, type languages, type MonacoEditor } from 'monaco-types'
 import { createWorkerManager, type WorkerManagerOptions } from 'monaco-worker-manager'
 
-import {
-  createCodeActionProvider,
-  createDocumentFormattingProvider,
-  createMarkerDataProvider
-} from './languageFeatures.js'
-import { type UnifiedWorker } from './worker.js'
+import { type SerializableMarkerData, type UnifiedWorker } from './worker.js'
+
+const messagesMap = new WeakMap<editor.ITextModel, SerializableMarkerData[]>()
 
 export interface MonacoUnifiedOptions<Configuration>
   extends Pick<WorkerManagerOptions<Configuration>, 'interval' | 'label' | 'stopWhenIdleFor'> {
@@ -69,24 +66,96 @@ export function configureMonacoUnified<Configuration>(
   const disposables: IDisposable[] = [workerManager]
   if (options.formatting !== false) {
     disposables.push(
-      monaco.languages.registerDocumentFormattingEditProvider(
-        options.languageSelector,
-        createDocumentFormattingProvider(workerManager.getWorker)
-      )
+      monaco.languages.registerDocumentFormattingEditProvider(options.languageSelector, {
+        async provideDocumentFormattingEdits(model) {
+          const worker = await workerManager.getWorker(model.uri)
+
+          const text = await worker.doFormat(String(model.uri))
+
+          if (!text) {
+            return
+          }
+
+          return [{ range: model.getFullModelRange(), text }]
+        }
+      })
     )
   }
+
   if (options.validation !== false) {
     disposables.push(
-      monaco.languages.registerCodeActionProvider(
-        options.languageSelector,
-        createCodeActionProvider()
-      )
+      monaco.languages.registerCodeActionProvider(options.languageSelector, {
+        provideCodeActions(model, range) {
+          const messages = messagesMap.get(model)
+
+          if (!messages) {
+            return
+          }
+
+          const actions: languages.CodeAction[] = []
+
+          for (const message of messages) {
+            if (!message.expected) {
+              continue
+            }
+
+            if (!range.intersectRanges(message)) {
+              continue
+            }
+
+            for (const expected of message.expected) {
+              const value = model.getValueInRange(message)
+              actions.push({
+                title: expected
+                  ? value
+                    ? `Replace \`${value}\` with \`${expected}\``
+                    : `Insert \`${expected}\``
+                  : `Delete \`${value}\``,
+                kind: 'quickfix',
+                isPreferred: message.expected.length === 1,
+                edit: {
+                  edits: [
+                    {
+                      textEdit: { range: message, text: expected },
+                      resource: model.uri,
+                      versionId: model.getVersionId()
+                    }
+                  ]
+                }
+              })
+            }
+          }
+
+          return {
+            actions,
+            dispose() {
+              // This function is needed by the TypeScript interface
+            }
+          }
+        }
+      })
     )
-    markerDataProvider = registerMarkerDataProvider(
-      monaco,
-      options.languageSelector,
-      createMarkerDataProvider(monaco, workerManager.getWorker)
-    )
+
+    markerDataProvider = registerMarkerDataProvider(monaco, options.languageSelector, {
+      owner: 'unified',
+      async provideMarkerData(model) {
+        const worker = await workerManager.getWorker(model.uri)
+
+        const messages = await worker.doValidate(String(model.uri))
+
+        if (!messages) {
+          messagesMap.delete(model)
+          return
+        }
+
+        messagesMap.set(model, messages)
+
+        return messages.map(({ code, expected, url, ...message }) => ({
+          ...message,
+          code: url ? { target: monaco.Uri.parse(url), value: code ?? url } : code
+        }))
+      }
+    })
   }
 
   return {
