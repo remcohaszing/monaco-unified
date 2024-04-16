@@ -1,6 +1,3 @@
 root: true
 extends:
   - remcohaszing
-  - remcohaszing/typechecking
-rules:
-  import/no-extraneous-dependencies: off
