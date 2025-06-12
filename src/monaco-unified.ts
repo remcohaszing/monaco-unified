@@ -16,7 +16,7 @@ export interface MonacoUnifiedOptions<Configuration>
   /**
    * The language ID or IDs to which to apply `monaco-unified`.
    */
-  languageSelector: string[] | string
+  languageSelector: string | string[]
 
   /**
    * The configuration that will be sent to the worker.
@@ -42,15 +42,18 @@ export interface MonacoUnified<Configuration> extends IDisposable {
   /**
    * Update the configuration.
    */
-  reconfigure: (configuration: Configuration) => void
+  reconfigure: (configuration: Configuration) => unknown
 }
 
 /**
  * Configure monaco-unified.
  *
- * @param monaco The `monaco-editor` module to use.
- * @param options Options to configure `monaco-unified`.
- * @returns A disposable
+ * @param monaco
+ *   The `monaco-editor` module to use.
+ * @param options
+ *   Options to configure `monaco-unified`.
+ * @returns
+ *   A disposable
  */
 export function configureMonacoUnified<Configuration>(
   monaco: MonacoEditor,

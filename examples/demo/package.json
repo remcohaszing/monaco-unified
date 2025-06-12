@@ -10,17 +10,17 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.0.0",
     "css-loader": "^7.0.0",
-    "css-minimizer-webpack-plugin": "^6.0.0",
+    "css-minimizer-webpack-plugin": "^7.0.0",
     "html-webpack-plugin": "^5.0.0",
     "mini-css-extract-plugin": "^2.0.0",
-    "monaco-editor": "^0.41.0",
+    "monaco-editor": "^0.52.0",
     "monaco-unified": "file:../..",
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
     "remark-lint-heading-increment": "^4.0.0",
     "remark-lint-list-item-indent": "^4.0.0",
     "remark-lint-list-item-spacing": "^5.0.0",
-    "remark-lint-no-duplicate-defined-urls": "3.0.0",
+    "remark-lint-no-duplicate-defined-urls": "^3.0.0",
     "remark-lint-no-duplicate-definitions": "^4.0.0",
     "remark-lint-no-empty-url": "^4.0.0",
     "remark-lint-no-reference-like-url": "^4.0.0",
@@ -37,7 +37,7 @@
     "ts-loader": "^9.0.0",
     "unified": "^11.0.0",
     "webpack": "^5.0.0",
-    "webpack-cli": "^5.0.0",
+    "webpack-cli": "^6.0.0",
     "webpack-dev-server": "^5.0.0"
   }
 }

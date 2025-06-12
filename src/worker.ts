@@ -86,8 +86,10 @@ function placeToRange(place: VFileMessage['place']): IRange {
 /**
  * Represent a vfile message in Monaco editor.
  *
- * @param message The vfile message to represent in Monaco editor
- * @returns The vfile message as Monaco editor marker data.
+ * @param message
+ *   The vfile message to represent in Monaco editor
+ * @returns
+ *   The vfile message as Monaco editor marker data.
  */
 function vfileMessageToMarkerData(message: VFileMessage): SerializableMarkerData {
   const msg: string[] = []
@@ -115,11 +117,12 @@ function vfileMessageToMarkerData(message: VFileMessage): SerializableMarkerData
 /**
  * Initialize the worker.
  *
- * @param getProcessor A function for getting a processor.
+ * @param getProcessor
+ *   A function for getting a processor.
  */
-export function initialize<Configuration>(getProcessor: ProcessorGetter<Configuration>): void {
+export function initialize<Configuration>(getProcessor: ProcessorGetter<Configuration>): undefined {
   initializeWorker<UnifiedWorker, Configuration>((ctx, createData) => {
-    const getVFile = (uri: string): VFile | undefined => {
+    const getVFile = (uri: string): undefined | VFile => {
       const models = ctx.getMirrorModels()
       for (const model of models) {
         if (String(model.uri) === uri) {

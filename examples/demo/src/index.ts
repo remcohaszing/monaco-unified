@@ -1,7 +1,7 @@
+import './index.css'
+
 import * as monaco from 'monaco-editor'
 import { configureMonacoUnified } from 'monaco-unified'
-
-import './index.css'
 
 window.MonacoEnvironment = {
   getWorker(moduleId, label) {
